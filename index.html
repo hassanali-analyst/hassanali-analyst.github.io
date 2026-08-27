@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hassan Ali — Data & Supply Chain Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#0F2847;
+    --navy:#1F3864;
+    --navy-soft:#2C4C7C;
+    --teal:#4FD1C5;
+    --ink:#152238;
+    --grey:#5B6B7F;
+    --grey-light:#8FA0B3;
+    --paper:#F7F9FC;
+    --line:#E3E9F0;
+    --white:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  section{padding:100px 8vw;}
+  @media(max-width:700px){section{padding:70px 6vw;}}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-bottom:14px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--teal);}
+
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 8vw;
+    background:rgba(15,40,71,0.85);
+    backdrop-filter:blur(10px);
+  }
+  .nav-name{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--white);font-size:19px;letter-spacing:0.02em;}
+  .nav-links{display:flex;gap:34px;}
+  .nav-links a{color:#C7D4E6;font-size:14px;font-weight:500;transition:color .2s;}
+  .nav-links a:hover{color:var(--teal);}
+  @media(max-width:700px){.nav-links{display:none;}}
+
+  .hero{
+    min-height:100vh;
+    background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 55%,var(--navy-soft) 100%);
+    color:var(--white);
+    display:flex;flex-direction:column;justify-content:center;
+    padding-top:120px;position:relative;overflow:hidden;
+  }
+  .hero-grid{position:absolute;inset:0;opacity:0.05;
+    background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
+    background-size:60px 60px;
+  }
+  .hero-content{max-width:760px;position:relative;z-index:2;}
+  .hero h1{
+    font-size:clamp(38px,6vw,66px);
+    font-weight:700;line-height:1.08;letter-spacing:-0.01em;
+    margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal;color:var(--teal);}
+  .hero p.lead{font-size:19px;color:#C7D4E6;max-width:600px;margin-bottom:38px;}
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    padding:14px 28px;border-radius:6px;font-weight:600;font-size:15px;
+    display:inline-flex;align-items:center;gap:8px;transition:all .2s;
+  }
+  .btn-primary{background:var(--teal);color:var(--navy-deep);}
+  .btn-primary:hover{background:#6EE0D6;transform:translateY(-2px);}
+  .btn-ghost{border:1px solid rgba(255,255,255,0.25);color:var(--white);}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+
+  .hero-nodes{position:absolute;right:6vw;bottom:60px;opacity:0.5;z-index:1;}
+  @media(max-width:900px){.hero-nodes{display:none;}}
+
+  .sec-head{max-width:640px;margin-bottom:56px;}
+  .sec-head h2{font-size:clamp(28px,3.4vw,40px);font-weight:700;letter-spacing:-0.01em;}
+
+  .about{background:var(--white);}
+  .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:70px;align-items:start;}
+  @media(max-width:850px){.about-grid{grid-template-columns:1fr;gap:40px;}}
+  .about p{color:var(--grey);font-size:16.5px;margin-bottom:18px;}
+  .about strong{color:var(--ink);font-weight:600;}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .stat{background:var(--white);padding:28px 24px;}
+  .stat .num{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;color:var(--navy);}
+  .stat .label{font-size:13px;color:var(--grey);margin-top:6px;}
+
+  .projects{background:var(--paper);}
+  .proj-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .proj{
+    background:var(--white);padding:34px 36px;
+    display:grid;grid-template-columns:60px 1fr auto;gap:28px;align-items:center;
+    transition:background .2s;
+  }
+  .proj:hover{background:#FBFCFE;}
+  @media(max-width:750px){.proj{grid-template-columns:1fr;gap:14px;}}
+  .proj-num{font-family:'JetBrains Mono',monospace;color:var(--grey-light);font-size:14px;}
+  .proj-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;margin-bottom:6px;}
+  .proj-desc{color:var(--grey);font-size:15px;margin-bottom:10px;}
+  .proj-result{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:13px;
+    background:#EAFBF8;color:#0C8A7A;padding:5px 12px;border-radius:20px;margin-bottom:10px;
+  }
+  .proj-tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .tag{font-size:12px;color:var(--grey);background:var(--paper);border:1px solid var(--line);padding:4px 10px;border-radius:20px;}
+  .proj-arrow{font-size:22px;color:var(--grey-light);}
+
+  .dashboard-feature{
+    margin-top:40px;background:var(--navy-deep);color:var(--white);border-radius:14px;
+    padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;
+  }
+  @media(max-width:750px){.dashboard-feature{grid-template-columns:1fr;}}
+  .dashboard-feature .eyebrow{color:var(--teal);}
+  .dashboard-feature h3{font-size:24px;margin-bottom:12px;}
+  .dashboard-feature p{color:#C7D4E6;font-size:15px;}
+  .mini-chart{background:rgba(255,255,255,0.06);border-radius:10px;height:160px;
+    display:flex;align-items:flex-end;gap:8px;padding:20px;}
+  .mini-chart div{background:var(--teal);border-radius:3px 3px 0 0;flex:1;opacity:0.85;}
+
+  .credentials{background:var(--white);}
+  .cred-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:70px;}
+  @media(max-width:850px){.cred-grid{grid-template-columns:1fr;gap:44px;}}
+  .cred-block h3{font-size:16px;font-weight:600;margin-bottom:18px;color:var(--navy);}
+  .edu-item{margin-bottom:20px;}
+  .edu-item .deg{font-weight:600;font-size:16px;}
+  .edu-item .school{color:var(--grey);font-size:14px;margin-top:2px;}
+  .cert-list{list-style:none;}
+  .cert-list li{
+    display:flex;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);
+  }
+  .cert-list li:last-child{border-bottom:none;}
+  .cert-mark{color:var(--teal);font-size:18px;line-height:1.4;}
+  .cert-name{font-weight:600;font-size:15px;}
+  .cert-org{color:var(--grey);font-size:13.5px;margin-top:2px;}
+  .cert-new{font-family:'JetBrains Mono',monospace;font-size:10px;background:#EAFBF8;color:#0C8A7A;padding:2px 8px;border-radius:20px;margin-left:8px;vertical-align:middle;}
+  .verify-links{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+  .verify-links a{font-size:13.5px;color:var(--navy);border:1px solid var(--line);padding:10px 14px;border-radius:8px;display:flex;justify-content:space-between;transition:.2s;}
+  .verify-links a:hover{border-color:var(--teal);color:var(--teal);}
+
+  .toolkit{background:var(--paper);}
+  .tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  @media(max-width:750px){.tool-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:480px){.tool-grid{grid-template-columns:1fr;}}
+  .tool-card{background:var(--white);padding:30px 26px;}
+  .tool-card h4{font-size:16px;font-weight:600;margin-bottom:6px;}
+  .tool-card p{color:var(--grey);font-size:13.5px;}
+  .tool-card.new{background:#FBFEFD;}
+  .tool-card.new h4::after{content:"NEW";font-family:'JetBrains Mono',monospace;font-size:9px;background:var(--teal);color:var(--navy-deep);padding:2px 7px;border-radius:20px;margin-left:8px;vertical-align:middle;}
+
+  .contact{
+    background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 100%);
+    color:var(--white);text-align:center;
+  }
+  .contact .sec-head{margin:0 auto 40px;}
+  .contact h2{font-size:clamp(28px,4vw,44px);}
+  .contact p.lead{color:#C7D4E6;font-size:17px;max-width:560px;margin:0 auto 40px;}
+  .contact-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+  .contact-links a{
+    padding:14px 24px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;
+    font-size:14px;font-weight:500;transition:.2s;
+  }
+  .contact-links a:hover{border-color:var(--teal);color:var(--teal);}
+
+  footer{
+    background:var(--navy-deep);color:var(--grey-light);
+    text-align:center;padding:26px;font-size:13px;
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-name">Hassan Ali</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Projects</a>
+    <a href="#credentials">Credentials</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div style="padding:0 8vw;">
+    <div class="hero-content">
+      <div class="eyebrow">Data Analyst · Supply Chain & Procurement · Jeddah, Saudi Arabia</div>
+      <h1>I turn messy data<br>into <em>clear decisions.</em></h1>
+      <p class="lead">Data Analyst with a Master's in Economics, currently working as a Procurement / Operations & MIS Analyst — building analysis across SQL, Python, Power BI, and Excel, with growing expertise in supply chain and inventory analytics.</p>
+      <div class="hero-ctas">
+        <a href="#work" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+  <svg class="hero-nodes" width="420" height="90" viewBox="0 0 420 90">
+    <path d="M 0 60 L 100 30 L 200 65 L 300 20 L 400 45" stroke="#4FD1C5" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <circle cx="0" cy="60" r="5" fill="#4FD1C5"/>
+    <circle cx="100" cy="30" r="5" fill="#4FD1C5"/>
+    <circle cx="200" cy="65" r="5" fill="#4FD1C5"/>
+    <circle cx="300" cy="20" r="5" fill="#4FD1C5"/>
+    <circle cx="400" cy="45" r="5" fill="#4FD1C5"/>
+  </svg>
+</section>
+
+<section class="about" id="about">
+  <div class="sec-head">
+    <div class="eyebrow">About</div>
+    <h2>From economics to analytics —<br>and now supply chain.</h2>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p>I'm a data analyst who enjoys finding the story hidden inside business data. With a <strong>Master's in Economics</strong> and over a year of hands-on analytics experience, I work across the full workflow — from cleaning and querying data to building dashboards that tell a clear story.</p>
+      <p>I currently work as a <strong>Procurement / Operations & MIS Analyst</strong> in Saudi Arabia, managing purchase orders, invoicing, and operational reporting. Previously I worked as a <strong>Junior Data Analyst at Samaya Group</strong> and completed a <strong>Data Science internship at Hexsoftware</strong>. Earlier, three years in banking gave me a sharp eye for accuracy with financial data.</p>
+      <p>Alongside my data work, I've built focused knowledge in supply chain management and process improvement — completing the <strong>Supply Chain Management Specialization (Rutgers University)</strong>, the <strong>Unilever Supply Chain Data Analyst Professional Certificate</strong>, the full <strong>DMAIC Framework specialization (Define, Measure, Analyze, Improve, and Control)</strong>, and the <strong>ASQ-Certified Six Sigma Green Belt (CSSGB) Exam Prep</strong>, covering logistics, sourcing, inventory management, demand forecasting, SAP fundamentals, root cause analysis, and statistical process control.</p>
+      <p>I'm now looking for <strong>Supply Chain Analyst, Procurement Analyst, Data Analyst, or MIS/Reporting Analyst</strong> roles where I can turn data into better decisions.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">1+ yr</div><div class="label">Data analytics experience</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">End-to-end portfolio projects</div></div>
+      <div class="stat"><div class="num">20+</div><div class="label">Certification courses completed</div></div>
+      <div class="stat"><div class="num">MA</div><div class="label">Master's in Economics</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="work">
+  <div class="sec-head">
+    <div class="eyebrow">Selected Work</div>
+    <h2>Three real-world projects.</h2>
+  </div>
+  <div class="proj-list">
+    <a class="proj" href="https://github.com/hassanali-analyst/smart-logistics-delay-analysis" target="_blank">
+      <div class="proj-num">01</div>
+      <div>
+        <div class="proj-title">Smart Logistics — Delay Analysis</div>
+        <div class="proj-desc">Analyzed 1,000 shipments to find the root cause of delivery delays.</div>
+        <div class="proj-result">Heavy traffic caused a 100% delay rate</div>
+        <div class="proj-tags"><span class="tag">Excel</span><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Power BI</span></div>
+      </div>
+      <div class="proj-arrow">→</div>
+    </a>
+    <a class="proj" href="https://github.com/hassanali-analyst/alnoor-operation-analytics" target="_blank">
+      <div class="proj-num">02</div>
+      <div>
+        <div class="proj-title">Operations — Invoice & Collections</div>
+        <div class="proj-desc">Built a 10-sheet MIS system analyzing 500+ invoices and purchase orders.</div>
+        <div class="proj-result">SAR 869K outstanding, SAR 149K critically overdue</div>
+        <div class="proj-tags"><span class="tag">Excel</span><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Power BI</span></div>
+      </div>
+      <div class="proj-arrow">→</div>
+    </a>
+    <a class="proj" href="https://github.com/hassanali-analyst/hr-attriction-analysis" target="_blank">
+      <div class="proj-num">03</div>
+      <div>
+        <div class="proj-title">HR — Employee Attrition Analysis</div>
+        <div class="proj-desc">Analyzed 1,470 employee records to find why people quit.</div>
+        <div class="proj-result">Overtime workers leave 3x more often</div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Excel</span><span class="tag">Power BI</span></div>
+      </div>
+      <div class="proj-arrow">→</div>
+    </a>
+  </div>
+
+  <div class="dashboard-feature">
+    <div>
+      <div class="eyebrow">Featured Dashboard · IBM Data Analyst Capstone</div>
+      <h3>Who are the world's developers?</h3>
+      <p>An interactive Cognos dashboard breaking down developer-survey respondents by age, country, and education level — the demographics view from my IBM Data Analyst capstone project.</p>
+    </div>
+    <div class="mini-chart">
+      <div style="height:35%"></div>
+      <div style="height:70%"></div>
+      <div style="height:50%"></div>
+      <div style="height:90%"></div>
+      <div style="height:60%"></div>
+      <div style="height:40%"></div>
+    </div>
+  </div>
+</section>
+<section class="credentials" id="credentials">
+  <div class="sec-head">
+    <div class="eyebrow">Credentials</div>
+    <h2>Education & certifications.</h2>
+  </div>
+  <div class="cred-grid">
+    <div class="cred-block">
+      <h3>Education</h3>
+      <div class="edu-item">
+        <div class="deg">Master of Arts (MA), Economics</div>
+        <div class="school">University of Lakki Marwat · 2023</div>
+      </div>
+      <div class="edu-item">
+        <div class="deg">Bachelor of Arts (B.A.)</div>
+        <div class="school">University of Lakki Marwat</div>
+      </div>
+
+      <h3 style="margin-top:36px;">Verified Certificates</h3>
+      <div class="verify-links">
+        <a href="https://coursera.org/verify/professional-cert/E9YLGK98SJRR" target="_blank">IBM Data Analyst Professional Certificate <span>Verify →</span></a>
+        <a href="https://coursera.org/verify/specialization/BK90KXH543G3" target="_blank">Generative AI for Data Analysts <span>Verify →</span></a>
+        <a href="https://coursera.org/verify/professional-cert/3OLQV2E8S510" target="_blank">Unilever Supply Chain Data Analyst <span>Verify →</span></a>
+        <a href="https://coursera.org/verify/specialization/ED6J68CUTDZ7" target="_blank">Supply Chain Management (Rutgers) <span>Verify →</span></a>
+        <a href="https://coursera.org/verify/specialization/U6X42UNSDUHG" target="_blank">ASQ Six Sigma Green Belt (CSSGB) Prep <span>Verify →</span></a>
+        <a href="https://coursera.org/verify/NKR8N5TEL4W1" target="_blank">DMAIC: Analyze, Improve & Control Phase <span>Verify →</span></a>
+      </div>
+    </div>
+
+    <div class="cred-block">
+      <h3>Certifications</h3>
+      <ul class="cert-list">
+        <li>
+          <span class="cert-mark">◆</span>
+          <div>
+            <div class="cert-name">DMAIC Framework — Define, Measure, Analyze, Improve & Control <span class="cert-new">NEW</span></div>
+            <div class="cert-org">SkillUp · Coursera</div>
+          </div>
+        </li>
+        <li>
+          <span class="cert-mark">◆</span>
+          <div>
+            <div class="cert-name">ASQ-Certified Six Sigma Green Belt (CSSGB) Exam Prep <span class="cert-new">NEW</span></div>
+            <div class="cert-org">SkillUp · Coursera</div>
+          </div>
+        </li>
+        <li>
+          <span class="cert-mark">◆</span>
+          <div>
+            <div class="cert-name">Supply Chain Management Specialization</div>
+            <div class="cert-org">Rutgers University · Coursera · 5 courses</div>
+          </div>
+        </li>
+        <li>
+          <span class="cert-mark">◆</span>
+          <div>
+            <div class="cert-name">Unilever Supply Chain Data Analyst Professional Certificate</div>
+            <div class="cert-org">Unilever · Coursera</div>
+          </div>
+        </li>
+        <li>
+          <span class="cert-mark">◆</span>
+          <div>
+            <div class="cert-name">IBM Data Analyst Professional Certificate</div>
+            <div class="cert-org">IBM · Coursera · 11 courses</div>
+          </div>
+        </li>
+        <li>
+          <span class="cert-mark">◆</span>
+          <div>
+            <div class="cert-name">Generative AI for Data Analysts</div>
+            <div class="cert-org">IBM · Coursera · 3 courses</div>
+          </div>
+        </li>
+        <li>
+          <span class="cert-mark">◆</span>
+          <div>
+            <div class="cert-name">Data Analytics with AI</div>
+            <div class="cert-org">Analytics Camp</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="toolkit" id="skills">
+  <div class="sec-head">
+    <div class="eyebrow">Toolkit</div>
+    <h2>What I work with.</h2>
+  </div>
+  <div class="tool-grid">
+    <div class="tool-card"><h4>SQL</h4><p>Querying, joins, aggregation</p></div>
+    <div class="tool-card"><h4>Python</h4><p>pandas, data cleaning & analysis</p></div>
+    <div class="tool-card"><h4>Power BI</h4><p>Interactive dashboards</p></div>
+    <div class="tool-card"><h4>Microsoft Excel</h4><p>PivotTables, formulas, reporting</p></div>
+    <div class="tool-card"><h4>Data Visualization</h4><p>Clear, decision-ready charts</p></div>
+    <div class="tool-card"><h4>Data Cleaning</h4><p>Validation & reconciliation</p></div>
+    <div class="tool-card"><h4>SAP</h4><p>Fundamentals, procurement & inventory modules</p></div>
+    <div class="tool-card"><h4>Supply Chain Analysis</h4><p>Demand forecasting, inventory & logistics</p></div>
+    <div class="tool-card new"><h4>Six Sigma / DMAIC</h4><p>Root cause analysis, DOE, statistical process control</p></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="sec-head">
+    <div class="eyebrow" style="justify-content:center;">Contact</div>
+    <h2>Let's work together.</h2>
+  </div>
+  <p class="lead">Open to Data Analyst, Supply Chain Analyst, Procurement Analyst, and MIS/Reporting Analyst roles in Saudi Arabia. Always happy to talk data.</p>
+  <div class="contact-links">
+    <a href="mailto:Hassanbacha636@gmail.com">Email Me</a>
+    <a href="https://wa.me/966549574868" target="_blank">WhatsApp</a>
+    <a href="https://www.linkedin.com/in/hassan-ali85" target="_blank">LinkedIn</a>
+    <a href="https://github.com/hassanali-analyst" target="_blank">GitHub</a>
+  </div>
+</section>
+
+<footer>© 2026 Hassan Ali · Data & Supply Chain Analyst · Jeddah, Saudi Arabia</footer>
+
+</body>
+</html>
